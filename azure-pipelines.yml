@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps: 
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'IAC-ARM-Deployment-Connection'
+    subscriptionId: '6f8ade1b-bb18-421d-a9c2-6587e145c4d3'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'IAC-ARM-Deployment-Test-RG'
+    location: 'Australia East'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/mandeeponcloud/AzureARMRepo/main/create_web_app/azuredeploy.json'
+    overrideParameters: '-projectName IAC-ARM-Deployment'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
