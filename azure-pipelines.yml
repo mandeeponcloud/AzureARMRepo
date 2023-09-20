@@ -23,3 +23,8 @@ steps:
     overrideParameters: '-projectName IAC-ARM-Deployment'
     deploymentMode: 'Incremental'
     deploymentName: 'DeployPipelineTemplate'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    environmentServiceNameAzureRM: 'AZ45-ARQ - D&A Capability Lab [NONPROD] - Azure subscription(6f8ade1b-bb18-421d-a9c2-6587e145c4d3)'
